@@ -1,6 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { restaurants } from '../data/restaurants.js'
-import RestaurantImage from '../components/RestaurantImage.jsx'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import L from 'leaflet'
 
@@ -24,88 +23,88 @@ export default function RestaurantDetailPage() {
     return <Navigate to="/restaurants" replace />
   }
 
+  const index = restaurants.findIndex((r) => r.id === restaurant.id) + 1
+
   return (
-    <div className="pt-32 pb-24">
-      {/* HERO */}
-      <section className="container-wafu mb-16">
+    <div className="pt-24 md:pt-36 pb-20">
+      {/* BACK */}
+      <section className="container-wafu mb-6 md:mb-10">
         <Link
           to="/restaurants"
-          className="inline-flex items-center gap-2 text-sm text-wafu-ink/60 hover:text-wafu-pink mb-8"
+          className="inline-flex items-center gap-2 text-[12px] uppercase tracking-stamp text-wafu-ink/60 hover:text-wafu-pink"
           style={{ transition: 'color 200ms ease' }}
         >
-          <span aria-hidden>←</span> Retour à la liste
+          <span aria-hidden>←</span> Retour aux restaurants
         </Link>
+      </section>
 
-        <div className="grid md:grid-cols-12 gap-12 items-end">
-          <div className="md:col-span-7">
-            <div className="eyebrow mb-5 flex items-center gap-3">
-              <span className="rule" />
-              {restaurant.region}
+      {/* HERO — type-only */}
+      <section className="container-wafu mb-12 md:mb-20">
+        <div className="flex gap-5 md:gap-8">
+          <div className="flex-shrink-0 pt-3">
+            <span className="wafu-rule block h-24 md:h-40" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-baseline gap-4 mb-5 md:mb-7">
+              <span className="eyebrow-ink">N°{String(index).padStart(2, '0')}</span>
+              <span className="eyebrow">{restaurant.region}</span>
             </div>
-            <h1 className="display text-5xl md:text-7xl leading-[0.98] mb-6">
-              {restaurant.name}
+            <h1 className="display text-[2.4rem] sm:text-6xl md:text-7xl leading-[0.95] mb-6">
+              <span className="italic">{restaurant.name.replace(/^Wafu\s+/, '')}</span>
             </h1>
-            <p className="text-lg text-wafu-ink/70 leading-relaxed max-w-2xl">
+            <p className="font-serif italic text-lg md:text-xl text-wafu-ink/80 leading-snug max-w-2xl">
               {restaurant.description}
             </p>
-          </div>
-          <div className="md:col-span-5">
-            <div className="aspect-[4/5] overflow-hidden bg-wafu-paper border border-wafu-ink/10">
-              <RestaurantImage
-                src={restaurant.image}
-                alt={restaurant.name}
-                eager
-                className="w-full h-full"
-              />
-            </div>
           </div>
         </div>
       </section>
 
       {/* QUICK ACTIONS */}
-      <section className="container-wafu mb-20">
-        <div className="border-t border-b border-wafu-ink/15 py-6 grid md:grid-cols-2 gap-px bg-wafu-ink/10">
+      <section className="container-wafu mb-16 md:mb-20">
+        <div className="border-y border-wafu-ink/15 grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-wafu-ink/15">
           <a
             href={restaurant.wazeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-wafu-paper px-6 py-6 flex items-center justify-between group"
+            className="group flex items-center justify-between px-5 py-5 sm:py-6 hover:bg-wafu-sand"
+            style={{ transition: 'background-color 200ms ease' }}
           >
             <div>
-              <div className="eyebrow mb-1">Itinéraire</div>
-              <div className="font-serif text-2xl tracking-editorial text-wafu-ink group-hover:text-wafu-pink" style={{ transition: 'color 200ms ease' }}>
+              <div className="eyebrow-ink mb-1">Itinéraire</div>
+              <div className="font-serif italic text-xl md:text-2xl tracking-editorial text-wafu-ink group-hover:text-wafu-pink" style={{ transition: 'color 200ms ease' }}>
                 Waze
               </div>
             </div>
-            <span className="text-wafu-ink/40 group-hover:text-wafu-pink text-2xl" style={{ transition: 'color 200ms ease' }}>→</span>
+            <span className="text-wafu-ink/30 group-hover:text-wafu-pink text-2xl" style={{ transition: 'color 200ms ease' }} aria-hidden>→</span>
           </a>
           <a
             href={restaurant.googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-wafu-paper px-6 py-6 flex items-center justify-between group"
+            className="group flex items-center justify-between px-5 py-5 sm:py-6 hover:bg-wafu-sand"
+            style={{ transition: 'background-color 200ms ease' }}
           >
             <div>
-              <div className="eyebrow mb-1">Itinéraire</div>
-              <div className="font-serif text-2xl tracking-editorial text-wafu-ink group-hover:text-wafu-pink" style={{ transition: 'color 200ms ease' }}>
+              <div className="eyebrow-ink mb-1">Itinéraire</div>
+              <div className="font-serif italic text-xl md:text-2xl tracking-editorial text-wafu-ink group-hover:text-wafu-pink" style={{ transition: 'color 200ms ease' }}>
                 Google Maps
               </div>
             </div>
-            <span className="text-wafu-ink/40 group-hover:text-wafu-pink text-2xl" style={{ transition: 'color 200ms ease' }}>→</span>
+            <span className="text-wafu-ink/30 group-hover:text-wafu-pink text-2xl" style={{ transition: 'color 200ms ease' }} aria-hidden>→</span>
           </a>
         </div>
       </section>
 
       {/* MAIN GRID */}
-      <section className="container-wafu grid lg:grid-cols-12 gap-12">
-        {/* LEFT info */}
-        <aside className="lg:col-span-4 space-y-10">
+      <section className="container-wafu grid lg:grid-cols-12 gap-10 lg:gap-14">
+        {/* LEFT INFO */}
+        <aside className="lg:col-span-5 space-y-10">
           <div>
-            <div className="eyebrow mb-3 flex items-center gap-3">
-              <span className="rule" />
-              Coordonnées
+            <div className="flex items-center gap-3 mb-3">
+              <span className="wafu-rule-h" />
+              <span className="eyebrow">Coordonnées</span>
             </div>
-            <p className="font-serif text-lg text-wafu-ink leading-relaxed mb-3">
+            <p className="font-serif text-lg md:text-xl text-wafu-ink leading-relaxed mb-3 italic">
               {restaurant.address}
             </p>
             {restaurant.phone && (
@@ -120,9 +119,9 @@ export default function RestaurantDetailPage() {
           </div>
 
           <div>
-            <div className="eyebrow mb-3 flex items-center gap-3">
-              <span className="rule" />
-              Horaires
+            <div className="flex items-center gap-3 mb-3">
+              <span className="wafu-rule-h" />
+              <span className="eyebrow">Horaires</span>
             </div>
             <ul className="space-y-2">
               {restaurant.hours.map((line) => (
@@ -136,7 +135,7 @@ export default function RestaurantDetailPage() {
 
           <div className="border-l-2 border-wafu-pink pl-5 py-2">
             <div className="eyebrow mb-2">Indépendance</div>
-            <p className="text-sm text-wafu-ink/70 leading-relaxed">
+            <p className="text-[14px] text-wafu-ink/75 leading-relaxed">
               Cet établissement fixe librement ses prix et ses horaires.
               {restaurant.phone
                 ? ` Pour toute information précise, contactez-le directement au ${restaurant.phone}.`
@@ -145,13 +144,13 @@ export default function RestaurantDetailPage() {
           </div>
         </aside>
 
-        {/* RIGHT map */}
-        <div className="lg:col-span-8">
-          <div className="eyebrow mb-5 flex items-center gap-3">
-            <span className="rule" />
-            Nous trouver
+        {/* RIGHT MAP */}
+        <div className="lg:col-span-7">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="wafu-rule-h" />
+            <span className="eyebrow">Nous trouver</span>
           </div>
-          <div className="h-[460px] overflow-hidden border border-wafu-ink/10">
+          <div className="h-[55vh] min-h-[360px] lg:h-[520px] border border-wafu-ink/10">
             <MapContainer center={restaurant.coordinates} zoom={15} scrollWheelZoom={false} className="w-full h-full">
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

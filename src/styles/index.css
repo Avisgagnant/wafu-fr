@@ -6,16 +6,18 @@
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
   }
 
   body {
     @apply bg-wafu-paper text-wafu-ink font-sans;
-    font-feature-settings: "ss01", "cv11";
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4 {
     @apply font-serif tracking-editorial text-wafu-ink;
-    font-variation-settings: "opsz" 90;
+    font-weight: 500;
+    line-height: 1.05;
   }
 
   ::selection {
@@ -32,78 +34,99 @@
 }
 
 @layer components {
+  /* Mobile-first container */
   .container-wafu {
-    @apply max-w-6xl mx-auto px-5 sm:px-8 lg:px-10;
+    @apply mx-auto w-full px-5 sm:px-8 lg:px-10;
+    max-width: 76rem;
   }
 
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-wafu-ink text-wafu-paper font-medium text-sm tracking-wide uppercase;
-    transition: background-color 200ms ease, transform 200ms ease;
+  /* The Wafu vertical rule — recurring identity motif */
+  .wafu-rule {
+    @apply block w-px self-stretch bg-wafu-pink;
   }
-  .btn-primary:hover {
-    background-color: #DA2B79;
-  }
-  .btn-primary:active {
-    transform: translateY(1px);
+  .wafu-rule-h {
+    @apply block w-8 h-px bg-wafu-pink;
   }
 
-  .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border border-wafu-ink text-wafu-ink font-medium text-sm tracking-wide uppercase bg-transparent;
-    transition: background-color 200ms ease, color 200ms ease;
-  }
-  .btn-outline:hover {
-    background-color: #141414;
-    color: #FBF7EF;
-  }
-
+  /* Stamped eyebrow labels — wider tracking */
   .eyebrow {
-    @apply text-xs uppercase tracking-[0.22em] text-wafu-pink font-medium;
+    @apply text-[11px] uppercase tracking-stamp text-wafu-pink font-medium;
+  }
+  .eyebrow-ink {
+    @apply text-[11px] uppercase tracking-stamp text-wafu-ink/70 font-medium;
   }
 
+  /* Display serif headings */
   .display {
     @apply font-serif tracking-editorial;
-    font-variation-settings: "opsz" 144;
+    font-weight: 500;
   }
 
-  .rule {
-    @apply block w-10 h-px bg-wafu-ink/40;
+  /* Buttons (tap-friendly heights) */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-wafu-ink text-wafu-paper font-medium text-[13px] tracking-stamp uppercase min-h-[48px];
+    transition: background-color 200ms ease;
   }
+  .btn-primary:hover { background-color: #DA2B79; }
+  .btn-primary:active { transform: translateY(1px); }
 
-  .card-flat {
-    @apply bg-white border border-wafu-ink/10;
-    transition: border-color 200ms ease, transform 250ms ease;
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-wafu-ink text-wafu-ink font-medium text-[13px] tracking-stamp uppercase min-h-[48px];
+    transition: background-color 200ms ease, color 200ms ease;
   }
-  .card-flat:hover {
-    border-color: rgba(218, 43, 121, 0.6);
-    transform: translateY(-2px);
-  }
+  .btn-outline:hover { background-color: #141414; color: #FBF7EF; }
 
+  /* Reveal on scroll */
   .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 700ms ease, transform 700ms ease;
+    transform: translateY(16px);
+    transition: opacity 600ms ease, transform 600ms ease;
     will-change: opacity, transform;
   }
-  .reveal.in {
-    opacity: 1;
-    transform: translateY(0);
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* Accordion row — max-height transition (reliable across browsers) */
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .accordion-body.open {
+    max-height: 480px;
+  }
+  .accordion-body > .inner {
+    /* no special needs; max-height on parent handles clipping */
+  }
+
+  /* Horizontal pill row, scrollable on mobile */
+  .pill-row {
+    @apply flex gap-2 overflow-x-auto pb-1;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pill-row::-webkit-scrollbar { display: none; }
+
+  .pill {
+    @apply flex-shrink-0 px-4 py-2 text-[12px] uppercase tracking-stamp border border-wafu-ink/15 text-wafu-ink/70 bg-transparent whitespace-nowrap;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+  }
+  .pill:hover { border-color: #14141440; color: #141414; }
+  .pill.active {
+    background-color: #141414;
+    color: #FBF7EF;
+    border-color: #141414;
+  }
+
+  /* Wafu monogram stamp (small pink square next to wordmark) */
+  .wafu-mark {
+    @apply inline-flex items-center justify-center w-6 h-6 bg-wafu-pink text-wafu-paper font-serif italic text-sm leading-none;
   }
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #FBF7EF;
-}
-::-webkit-scrollbar-thumb {
-  background: #14141433;
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #14141466;
-}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #FBF7EF; }
+::-webkit-scrollbar-thumb { background: #14141433; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #14141466; }
 
 .leaflet-container {
   font-family: inherit;
@@ -114,10 +137,5 @@
   background: #FBF7EF;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
-.leaflet-popup-tip {
-  background: #FBF7EF;
-}
-.custom-marker {
-  background: none !important;
-  border: none !important;
-}
+.leaflet-popup-tip { background: #FBF7EF; }
+.custom-marker { background: none !important; border: none !important; }
