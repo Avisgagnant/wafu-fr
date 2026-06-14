@@ -1,89 +1,118 @@
 import { Link } from 'react-router-dom'
 import { SITE_COPY } from '../data/restaurants.js'
+import useReveal from '../hooks/useReveal.js'
+
+const VALUES = [
+  { title: 'Fraîcheur', text: "Des produits sélectionnés avec soin et préparés au quotidien." },
+  { title: 'Savoir-faire', text: "Des chefs formés aux techniques traditionnelles asiatiques." },
+  { title: 'Partage', text: "Une table conviviale pour se retrouver autour d'un bon moment." },
+  { title: 'Authenticité', text: "Des recettes fidèles aux traditions, dans un décor asiatique." },
+  { title: 'Qualité', text: "Une même exigence partagée par tous les restaurants Wafu." },
+  { title: 'Diversité', text: "Une cuisine qui célèbre les saveurs de toute l'Asie." },
+]
 
 export default function ConceptPage() {
+  useReveal()
   return (
-    <div className="pt-24 pb-16">
+    <div className="pt-32 pb-24">
       {/* HERO */}
-      <section className="container-wafu py-16">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="text-wafu-pink font-semibold uppercase tracking-widest text-sm mb-3">Le concept</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-wafu-ink mb-6">
-            {SITE_COPY.heroTitle}
+      <section className="container-wafu mb-24">
+        <div className="max-w-3xl">
+          <div className="eyebrow mb-6 flex items-center gap-3">
+            <span className="rule" />
+            Le concept
+          </div>
+          <h1 className="display text-5xl md:text-7xl leading-[0.98] mb-8">
+            L'art du{' '}
+            <span className="italic text-wafu-pink">buffet</span>{' '}
+            asiatique.
           </h1>
-          <p className="text-xl text-wafu-ink/70 leading-relaxed">
+          <p className="text-xl md:text-2xl text-wafu-ink/75 font-serif italic leading-snug">
             {SITE_COPY.heroSubtitle}
           </p>
         </div>
       </section>
 
       {/* STORY */}
-      <section className="container-wafu py-12">
-        <div className="max-w-4xl mx-auto space-y-8 text-lg text-wafu-ink/80 leading-relaxed">
-          <p>
-            Chez <strong>Wafu</strong>, le buffet à volonté devient une véritable
-            invitation au voyage. {SITE_COPY.conceptLead}
+      <section className="container-wafu mb-24 grid md:grid-cols-12 gap-12">
+        <div className="md:col-span-7 reveal">
+          <p className="text-lg text-wafu-ink/80 leading-relaxed mb-6">
+            Chez <span className="font-serif italic">Wafu</span>, le buffet à volonté
+            devient une véritable invitation au voyage. {SITE_COPY.conceptLead}
           </p>
-
-          <div className="grid md:grid-cols-2 gap-8 my-12">
-            <div className="bg-wafu-paper border-l-4 border-wafu-pink p-6 rounded-r-sm">
-              <h3 className="text-2xl font-bold text-wafu-ink mb-3">Le buffet à volonté</h3>
-              <p className="text-base text-wafu-ink/70">
-                Goûtez à tout, à votre rythme, sans limite. Sushis, sashimis, brochettes
-                grillées, plats mijotés, soupes parfumées et desserts : un véritable voyage
-                culinaire à travers une multitude de saveurs authentiques.
-              </p>
-            </div>
-            <div className="bg-wafu-paper border-l-4 border-wafu-pink p-6 rounded-r-sm">
-              <h3 className="text-2xl font-bold text-wafu-ink mb-3">Une ambiance zen</h3>
-              <p className="text-base text-wafu-ink/70">
-                {SITE_COPY.ambiance} Un décor inspiré de l'esthétique asiatique pour une
-                parenthèse de douceur et de raffinement, au cœur de la ville.
-              </p>
-            </div>
-          </div>
-
-          {/* INDEPENDENCE — official */}
-          <div className="bg-gradient-to-br from-wafu-ink to-wafu-ink/90 text-wafu-cream rounded-sm p-8 my-8 relative overflow-hidden">
-            <h3 className="relative text-2xl md:text-3xl font-extrabold mb-5 text-wafu-pink">
-              {SITE_COPY.independenceTitle}
-            </h3>
-            <ul className="relative space-y-3 text-wafu-cream/90 text-lg">
-              {SITE_COPY.independenceLines.map((line) => (
-                <li key={line} className="flex items-start gap-3">
-                  <span className="text-wafu-pink mt-1.5 flex-shrink-0">◆</span>
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <h2 className="section-heading mb-8 inline-block">Nos valeurs</h2>
-
-          <div className="grid md:grid-cols-3 gap-6 my-8">
-            {[
-              { icon: '🌿', title: 'Fraîcheur', description: 'Des produits sélectionnés avec soin et préparés au quotidien.' },
-              { icon: '👨‍🍳', title: 'Savoir-faire', description: 'Des chefs formés aux techniques traditionnelles asiatiques.' },
-              { icon: '🤝', title: 'Partage', description: 'Une table conviviale pour se retrouver autour d\'un bon moment.' },
-              { icon: '🏯', title: 'Authenticité', description: 'Des recettes fidèles aux traditions, dans un décor asiatique.' },
-              { icon: '✨', title: 'Qualité', description: 'Une même exigence partagée par tous les restaurants Wafu.' },
-              { icon: '🌏', title: 'Diversité', description: 'Une cuisine qui célèbre les saveurs de toute l\'Asie.' },
-            ].map((value) => (
-              <div key={value.title} className="bg-white border border-wafu-ink/10 rounded-sm p-6 hover:shadow-lg transition-shadow text-center">
-                <div className="text-4xl mb-3">{value.icon}</div>
-                <h3 className="text-xl font-bold text-wafu-ink mb-2">{value.title}</h3>
-                <p className="text-sm text-wafu-ink/70">{value.description}</p>
-              </div>
-            ))}
+          <p className="text-lg text-wafu-ink/80 leading-relaxed">
+            Sushis, sashimis, brochettes grillées, plats mijotés, soupes parfumées et
+            desserts : un voyage culinaire à travers une multitude de saveurs
+            authentiques, à découvrir sans modération.
+          </p>
+        </div>
+        <div className="md:col-span-4 md:col-start-9 reveal">
+          <div className="border-l border-wafu-ink/15 pl-6 py-2">
+            <div className="eyebrow mb-3">Ambiance</div>
+            <p className="font-serif text-xl md:text-2xl leading-snug text-wafu-ink">
+              {SITE_COPY.ambiance}
+            </p>
           </div>
         </div>
+      </section>
 
-        <div className="text-center mt-16">
-          <Link to="/restaurants" className="btn-primary text-lg">
+      {/* INDEPENDENCE */}
+      <section className="bg-wafu-ink text-wafu-paper py-24 md:py-32 mb-24">
+        <div className="container-wafu grid md:grid-cols-12 gap-12">
+          <div className="md:col-span-5 reveal">
+            <div className="eyebrow text-wafu-pink mb-5 flex items-center gap-3">
+              <span className="block w-10 h-px bg-wafu-pink" />
+              Indépendance
+            </div>
+            <h2 className="display text-4xl md:text-5xl leading-[1.05]">
+              {SITE_COPY.independenceTitle}
+            </h2>
+          </div>
+          <ul className="md:col-span-7 md:col-start-6 space-y-6 reveal">
+            {SITE_COPY.independenceLines.map((line, i) => (
+              <li key={line} className="flex gap-5 text-wafu-paper/85 text-lg leading-relaxed">
+                <span className="font-serif text-wafu-pink text-2xl leading-none flex-shrink-0 mt-1">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* VALUES */}
+      <section className="container-wafu mb-24">
+        <div className="max-w-2xl mb-16 reveal">
+          <div className="eyebrow mb-5 flex items-center gap-3">
+            <span className="rule" />
+            Nos valeurs
+          </div>
+          <h2 className="display text-4xl md:text-5xl leading-[1.05]">
+            Six engagements partagés par tous les restaurants Wafu.
+          </h2>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-wafu-ink/10">
+          {VALUES.map((v, i) => (
+            <div key={v.title} className="bg-wafu-paper p-8 md:p-10">
+              <div className="font-serif text-sm text-wafu-pink mb-4 tracking-editorial">
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <h3 className="font-serif text-2xl text-wafu-ink mb-3 tracking-editorial">
+                {v.title}
+              </h3>
+              <p className="text-sm text-wafu-ink/70 leading-relaxed">{v.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="container-wafu">
+        <div className="border-t border-wafu-ink/15 pt-16 text-center">
+          <Link to="/restaurants" className="btn-primary">
             Trouver mon restaurant Wafu
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
           </Link>
         </div>
       </section>

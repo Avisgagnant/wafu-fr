@@ -2,14 +2,19 @@ import { Link } from 'react-router-dom'
 
 export default function NotFoundPage() {
   return (
-    <div className="pt-32 pb-24 container-wafu">
-      <div className="max-w-xl mx-auto text-center">
-        <div className="text-8xl font-extrabold text-wafu-pink/30 mb-4 leading-none">404</div>
-        <h1 className="text-3xl font-bold text-wafu-ink mb-4">Page introuvable</h1>
-        <p className="text-xl text-wafu-ink/70 mb-8">
+    <div className="pt-40 pb-32 container-wafu">
+      <div className="max-w-xl">
+        <div className="eyebrow mb-5 flex items-center gap-3">
+          <span className="rule" />
+          Erreur 404
+        </div>
+        <h1 className="display text-6xl md:text-8xl leading-[0.95] mb-6">
+          Page <span className="italic text-wafu-pink">introuvable</span>.
+        </h1>
+        <p className="text-lg text-wafu-ink/70 mb-10 leading-relaxed">
           Cette page n'existe pas ou a été déplacée.
         </p>
-        <Link to="/" className="btn-primary text-lg">
+        <Link to="/" className="btn-primary">
           Retour à l'accueil
         </Link>
       </div>

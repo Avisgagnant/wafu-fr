@@ -1,15 +1,24 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import Logo from './Logo.jsx'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const tickingRef = useRef(false)
   const location = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
+    const onScroll = () => {
+      if (tickingRef.current) return
+      tickingRef.current = true
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 24)
+        tickingRef.current = false
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -19,58 +28,46 @@ export default function Navbar() {
 
   const links = [
     { to: '/', label: 'Accueil' },
-    { to: '/concept', label: 'Le Concept' },
-    { to: '/restaurants', label: 'Nos Restaurants' },
+    { to: '/concept', label: 'Concept' },
+    { to: '/restaurants', label: 'Restaurants' },
   ]
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 inset-x-0 z-50 ${
         scrolled
-          ? 'bg-wafu-paper/95 backdrop-blur-md shadow-md py-2'
-          : 'bg-transparent py-4'
+          ? 'bg-wafu-paper/95 border-b border-wafu-ink/10'
+          : 'bg-transparent border-b border-transparent'
       }`}
+      style={{ transition: 'background-color 250ms ease, border-color 250ms ease' }}
     >
-      <div className="container-wafu flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="h-12 w-12 transition-transform group-hover:scale-110">
+      <div className="container-wafu flex items-center justify-between h-16 md:h-20">
+        <Link to="/" className="flex items-center gap-3">
+          <div className="h-9 w-9">
             <Logo />
           </div>
-          <div className="hidden sm:block">
-            <div className="font-serif font-bold text-2xl tracking-wider text-wafu-ink leading-none">
-              WAFU
-            </div>
-            <div className="text-xs text-wafu-pink font-medium tracking-widest uppercase mt-0.5">
-              Buffet Asiatique
-            </div>
-          </div>
+          <span className="font-serif text-xl tracking-editorial text-wafu-ink leading-none">
+            Wafu
+          </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-8">
           {links.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               end={link.to === '/'}
               className={({ isActive }) =>
-                `px-4 py-2 font-medium transition-all duration-300 relative ${
-                  isActive
-                    ? 'text-wafu-pink'
-                    : 'text-wafu-ink hover:text-wafu-pink'
+                `text-sm tracking-wide ${
+                  isActive ? 'text-wafu-pink' : 'text-wafu-ink hover:text-wafu-pink'
                 }`
               }
+              style={{ transition: 'color 200ms ease' }}
             >
-              {({ isActive }) => (
-                <>
-                  {link.label}
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-wafu-pink rounded-full" />
-                  )}
-                </>
-              )}
+              {link.label}
             </NavLink>
           ))}
-          <Link to="/restaurants" className="btn-primary ml-4 text-sm py-2.5">
+          <Link to="/restaurants" className="btn-primary py-2.5 text-xs">
             Trouver un restaurant
           </Link>
         </nav>
@@ -79,42 +76,34 @@ export default function Navbar() {
           className="md:hidden p-2 text-wafu-ink"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menu"
+          aria-expanded={mobileOpen}
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {mobileOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7h16M4 17h16" />
             )}
           </svg>
         </button>
       </div>
 
       {mobileOpen && (
-        <nav className="md:hidden bg-wafu-paper/98 backdrop-blur-md border-t border-wafu-ink/10 mt-2 py-4 animate-fade-in">
-          <div className="container-wafu flex flex-col gap-1">
+        <nav className="md:hidden bg-wafu-paper border-t border-wafu-ink/10">
+          <div className="container-wafu flex flex-col py-4">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `px-4 py-3 rounded-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-wafu-pink/10 text-wafu-pink'
-                      : 'text-wafu-ink hover:bg-wafu-ink/5'
-                  }`
+                  `py-3 text-base ${isActive ? 'text-wafu-pink' : 'text-wafu-ink'}`
                 }
               >
                 {link.label}
               </NavLink>
             ))}
-            <Link to="/restaurants" className="btn-primary mt-2">
+            <Link to="/restaurants" className="btn-primary mt-4 py-3">
               Trouver un restaurant
             </Link>
           </div>
