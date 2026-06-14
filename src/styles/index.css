@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-wafu-paper text-wafu-ink font-sans antialiased;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(199, 62, 122, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201, 169, 97, 0.05) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+@layer components {
+  .container-wafu {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-wafu-pink text-white font-medium rounded-sm shadow-md hover:bg-wafu-plum transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-wafu-ink text-wafu-ink font-medium rounded-sm hover:bg-wafu-ink hover:text-wafu-cream transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-wafu-ink font-medium hover:text-wafu-pink transition-colors duration-300;
+  }
+
+  .ink-divider {
+    @apply relative h-px bg-wafu-ink/20 my-12;
+  }
+
+  .ink-divider::before {
+    content: '';
+    @apply absolute left-1/2 -translate-x-1/2 -top-2 w-4 h-4 bg-wafu-paper border border-wafu-ink/20 rotate-45;
+  }
+
+  .section-heading {
+    @apply font-serif text-4xl md:text-5xl font-bold text-wafu-ink relative inline-block;
+  }
+
+  .section-heading::after {
+    content: '';
+    @apply absolute -bottom-3 left-0 h-1 w-16 bg-wafu-pink rounded-full;
+  }
+
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-sm shadow-lg overflow-hidden border border-wafu-ink/5 hover:shadow-2xl transition-all duration-500;
+  }
+
+  .brush-stroke {
+    @apply relative inline-block;
+  }
+
+  .brush-stroke::before {
+    content: '';
+    @apply absolute inset-x-0 bottom-1 h-3 bg-wafu-pink/30 -z-10 transform -skew-x-12;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FBF7EF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C73E7A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A02060;
+}
+
+/* Leaflet map fixes */
+.leaflet-container {
+  font-family: inherit;
+  background: #F7F1E3;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 4px !important;
+  background: #FBF7EF;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-tip {
+  background: #FBF7EF;
+}
+
+.custom-marker {
+  background: none !important;
+  border: none !important;
+}
