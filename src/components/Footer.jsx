@@ -11,7 +11,6 @@ export default function Footer() {
                 src="/images/logo.png"
                 alt="Wafu"
                 className="h-10 w-10 object-contain"
-                style={{ filter: 'brightness(0) invert(1)' }}
               />
               <span className="font-serif text-2xl tracking-editorial leading-none">Wafu</span>
             </div>

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 import HomePage from './pages/HomePage.jsx'
 import RestaurantsPage from './pages/RestaurantsPage.jsx'
 import RestaurantDetailPage from './pages/RestaurantDetailPage.jsx'
@@ -10,6 +11,7 @@ import NotFoundPage from './pages/NotFoundPage.jsx'
 function App() {
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollToTop />
       <Navbar />
       <main className="flex-1">
         <Routes>
