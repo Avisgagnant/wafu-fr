@@ -6,6 +6,9 @@ import HomePage from './pages/HomePage.jsx'
 import RestaurantsPage from './pages/RestaurantsPage.jsx'
 import RestaurantDetailPage from './pages/RestaurantDetailPage.jsx'
 import ConceptPage from './pages/ConceptPage.jsx'
+import MentionsLegalesPage from './pages/MentionsLegalesPage.jsx'
+import ConfidentialitePage from './pages/ConfidentialitePage.jsx'
+import CookiesPage from './pages/CookiesPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
 
 function App() {
@@ -19,6 +22,9 @@ function App() {
           <Route path="/concept" element={<ConceptPage />} />
           <Route path="/restaurants" element={<RestaurantsPage />} />
           <Route path="/restaurants/:id" element={<RestaurantDetailPage />} />
+          <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
+          <Route path="/confidentialite" element={<ConfidentialitePage />} />
+          <Route path="/cookies" element={<CookiesPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
