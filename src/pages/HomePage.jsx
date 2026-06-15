@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { restaurants, SITE_COPY } from '../data/restaurants.js'
 import useReveal from '../hooks/useReveal.js'
+import RestaurantImage from '../components/RestaurantImage.jsx'
 
 export default function HomePage() {
   useReveal()
@@ -16,31 +17,42 @@ export default function HomePage() {
       {/* HERO */}
       <section className="relative pt-24 pb-16 md:pt-36 md:pb-24">
         <div className="container-wafu">
-          <div className="flex gap-5 md:gap-8">
-            {/* Vertical pink rule — identity motif */}
-            <div className="flex-shrink-0 pt-3">
-              <span className="wafu-rule block h-24 md:h-40" />
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+            <div className="md:col-span-8 flex gap-5 md:gap-8">
+              {/* Vertical pink rule — identity motif */}
+              <div className="flex-shrink-0 pt-3">
+                <span className="wafu-rule block h-24 md:h-40" />
+              </div>
+
+              <div className="flex-1 min-w-0">
+                <div className="eyebrow mb-5 md:mb-7">Maison Wafu — depuis toujours</div>
+
+                <h1 className="display text-[2.6rem] sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] mb-7">
+                  <span className="italic">L'art</span><br />
+                  du buffet<br />
+                  <span className="text-wafu-pink italic">asiatique.</span>
+                </h1>
+
+                <p className="text-base sm:text-lg text-wafu-ink/75 leading-relaxed max-w-xl mb-9 font-serif">
+                  {SITE_COPY.heroSubtitle}
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link to="/restaurants" className="btn-primary">
+                    Trouver un restaurant
+                  </Link>
+                  <Link to="/concept" className="btn-outline">Le concept</Link>
+                </div>
+              </div>
             </div>
 
-            <div className="flex-1 min-w-0">
-              <div className="eyebrow mb-5 md:mb-7">Maison Wafu — depuis toujours</div>
-
-              <h1 className="display text-[2.6rem] sm:text-6xl md:text-8xl leading-[0.95] mb-7">
-                <span className="italic">L'art</span><br />
-                du buffet<br />
-                <span className="text-wafu-pink italic">asiatique.</span>
-              </h1>
-
-              <p className="text-base sm:text-lg text-wafu-ink/75 leading-relaxed max-w-xl mb-9 font-serif">
-                {SITE_COPY.heroSubtitle}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link to="/restaurants" className="btn-primary">
-                  Trouver un restaurant
-                </Link>
-                <Link to="/concept" className="btn-outline">Le concept</Link>
-              </div>
+            {/* Image slot — logo placeholder */}
+            <div className="md:col-span-4 reveal">
+              <RestaurantImage
+                alt="Wafu"
+                eager
+                className="w-full aspect-[16/10] md:aspect-[3/5]"
+              />
             </div>
           </div>
         </div>

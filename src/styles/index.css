@@ -92,7 +92,7 @@
     transition: max-height 280ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   .accordion-body.open {
-    max-height: 480px;
+    max-height: 720px;
   }
   .accordion-body > .inner {
     /* no special needs; max-height on parent handles clipping */

@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { restaurants } from '../data/restaurants.js'
+import RestaurantImage from '../components/RestaurantImage.jsx'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import L from 'leaflet'
 
@@ -38,23 +39,34 @@ export default function RestaurantDetailPage() {
         </Link>
       </section>
 
-      {/* HERO — type-only */}
+      {/* HERO */}
       <section className="container-wafu mb-12 md:mb-20">
-        <div className="flex gap-5 md:gap-8">
-          <div className="flex-shrink-0 pt-3">
-            <span className="wafu-rule block h-24 md:h-40" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-baseline gap-4 mb-5 md:mb-7">
-              <span className="eyebrow-ink">N°{String(index).padStart(2, '0')}</span>
-              <span className="eyebrow">{restaurant.region}</span>
+        <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+          <div className="md:col-span-8 flex gap-5 md:gap-8">
+            <div className="flex-shrink-0 pt-3">
+              <span className="wafu-rule block h-24 md:h-40" />
             </div>
-            <h1 className="display text-[2.4rem] sm:text-6xl md:text-7xl leading-[0.95] mb-6">
-              <span className="italic">{restaurant.name.replace(/^Wafu\s+/, '')}</span>
-            </h1>
-            <p className="font-serif italic text-lg md:text-xl text-wafu-ink/80 leading-snug max-w-2xl">
-              {restaurant.description}
-            </p>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline gap-4 mb-5 md:mb-7">
+                <span className="eyebrow-ink">N°{String(index).padStart(2, '0')}</span>
+                <span className="eyebrow">{restaurant.region}</span>
+              </div>
+              <h1 className="display text-[2.4rem] sm:text-6xl md:text-7xl leading-[0.95] mb-6">
+                <span className="italic">{restaurant.name.replace(/^Wafu\s+/, '')}</span>
+              </h1>
+              <p className="font-serif italic text-lg md:text-xl text-wafu-ink/80 leading-snug max-w-2xl">
+                {restaurant.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Image slot — logo placeholder */}
+          <div className="md:col-span-4">
+            <RestaurantImage
+              alt={restaurant.name}
+              eager
+              className="w-full aspect-[16/10] md:aspect-[3/5]"
+            />
           </div>
         </div>
       </section>

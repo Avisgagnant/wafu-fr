@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { restaurants, SITE_COPY } from '../data/restaurants.js'
 import RestaurantMap from '../components/RestaurantMap.jsx'
+import RestaurantImage from '../components/RestaurantImage.jsx'
 
 export default function RestaurantsPage() {
   const [params, setParams] = useSearchParams()
@@ -215,6 +216,11 @@ export default function RestaurantsPage() {
                             <div id={`r-${r.id}`} className={`accordion-body ${isOpen ? 'open' : ''}`}>
                               <div className="inner">
                                 <div className="pb-5 pl-[2.75rem] sm:pl-[3rem] pr-2">
+                                  {/* Image slot */}
+                                  <RestaurantImage
+                                    alt={r.name}
+                                    className="w-full aspect-[16/9] mb-4"
+                                  />
                                   <p className="text-[14px] text-wafu-ink/75 leading-relaxed mb-3">
                                     {r.address}
                                   </p>

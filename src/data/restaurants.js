@@ -352,7 +352,7 @@ export const restaurants = [
     "city": "Paris",
     "region": "Île-de-France",
     "address": "30 rue saint denis, 75001, Paris",
-    "phone": null,
+    "phone": "01 40 26 36 05",
     "coordinates": [
       48.8613,
       2.3499
@@ -447,7 +447,7 @@ export const restaurants = [
     "city": "Saint-Léonard",
     "region": "Normandie",
     "address": "1664 Route du Havre - Centre Commercial les Voiles, 76400 Saint-Léonard",
-    "phone": null,
+    "phone": "02 35 29 87 28",
     "coordinates": [
       49.6833,
       0.4167

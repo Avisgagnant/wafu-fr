@@ -47,7 +47,7 @@ export default function Navbar() {
       >
         <div className="container-wafu flex items-center justify-between h-14 md:h-20">
           <Link to="/" className="flex items-center gap-2.5" onClick={() => setMobileOpen(false)}>
-            <span className="wafu-mark">W</span>
+            <img src="/images/logo.png" alt="Wafu" className="h-8 w-8 md:h-9 md:w-9 object-contain" />
             <span className="font-serif text-[22px] md:text-2xl tracking-editorial text-wafu-ink leading-none">
               Wafu
             </span>

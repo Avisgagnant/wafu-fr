@@ -6,8 +6,13 @@ export default function Footer() {
       <div className="container-wafu py-14 md:py-20">
         <div className="grid md:grid-cols-12 gap-10 md:gap-12">
           <div className="md:col-span-5">
-            <div className="flex items-center gap-2.5 mb-6">
-              <span className="wafu-mark">W</span>
+            <div className="flex items-center gap-3 mb-6">
+              <img
+                src="/images/logo.png"
+                alt="Wafu"
+                className="h-10 w-10 object-contain"
+                style={{ filter: 'brightness(0) invert(1)' }}
+              />
               <span className="font-serif text-2xl tracking-editorial leading-none">Wafu</span>
             </div>
             <p className="text-wafu-paper/65 leading-relaxed max-w-md text-[15px]">
