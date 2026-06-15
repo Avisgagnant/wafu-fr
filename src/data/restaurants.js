@@ -11,8 +11,8 @@ export const restaurants = [
     "address": "Centre Commercial le Plateau Rue du Grand Quartier, 22190 Plérin",
     "phone": "02 96 73 33 13",
     "coordinates": [
-      48.5298,
-      -2.7847
+      48.5440,
+      -2.7695
     ],
     "googleMapsUrl": "https://maps.app.goo.gl/rTKbgKWDGjUA5P779",
     "wazeUrl": "https://ul.waze.com/ul?venue_id=234095077.-1953754378.10861370&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location",
@@ -449,8 +449,8 @@ export const restaurants = [
     "address": "1664 Route du Havre - Centre Commercial les Voiles, 76400 Saint-Léonard",
     "phone": "02 35 29 87 28",
     "coordinates": [
-      49.6833,
-      0.4167
+      49.7437,
+      0.3601
     ],
     "googleMapsUrl": "https://maps.app.goo.gl/EiJzwgp8iqtkrYdL6",
     "wazeUrl": "https://ul.waze.com/ul?venue_id=262641.2429805.39628071&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location",

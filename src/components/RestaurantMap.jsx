@@ -3,26 +3,26 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import { Link } from 'react-router-dom'
 
-// Marqueur personnalisé aux couleurs Wafu (bouton lotus rose)
+// Marqueur personnalisé aux couleurs Wafu.
+// Important : pas de transform sur le wrapper — Leaflet positionne déjà l'icône
+// pour que iconAnchor [17, 46] (bas-centre) tombe sur la coordonnée.
 const wafuIcon = L.divIcon({
   className: 'custom-marker',
-  html: `<div style="position: relative; transform: translate(-50%, -100%);">
-    <svg width="34" height="46" viewBox="0 0 36 48" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="pinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#FF6B9D"/>
-          <stop offset="100%" stop-color="#BE185D"/>
-        </linearGradient>
-      </defs>
-      <path d="M18 0C8.06 0 0 8.06 0 18c0 13.5 18 30 18 30s18-16.5 18-30C36 8.06 27.94 0 18 0z"
-        fill="url(#pinGrad)" stroke="#1A1A1A" stroke-width="1.5"/>
-      <circle cx="18" cy="18" r="7" fill="#FBF7EF"/>
-      <circle cx="18" cy="18" r="3.2" fill="#DA2B79"/>
-    </svg>
-  </div>`,
+  html: `<svg width="34" height="46" viewBox="0 0 36 48" xmlns="http://www.w3.org/2000/svg" style="display:block">
+    <defs>
+      <linearGradient id="pinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#FF6B9D"/>
+        <stop offset="100%" stop-color="#BE185D"/>
+      </linearGradient>
+    </defs>
+    <path d="M18 0C8.06 0 0 8.06 0 18c0 13.5 18 30 18 30s18-16.5 18-30C36 8.06 27.94 0 18 0z"
+      fill="url(#pinGrad)" stroke="#141414" stroke-width="1.5"/>
+    <circle cx="18" cy="18" r="7" fill="#FBF7EF"/>
+    <circle cx="18" cy="18" r="3.2" fill="#DA2B79"/>
+  </svg>`,
   iconSize: [34, 46],
   iconAnchor: [17, 46],
-  popupAnchor: [0, -40],
+  popupAnchor: [0, -42],
 })
 
 function FitBounds({ restaurants }) {

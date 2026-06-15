@@ -6,12 +6,10 @@ import L from 'leaflet'
 
 const wafuIcon = L.divIcon({
   className: 'custom-marker',
-  html: `<div style="position: relative; transform: translate(-50%, -100%);">
-    <svg width="32" height="44" viewBox="0 0 36 48" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 0C8.06 0 0 8.06 0 18c0 13.5 18 30 18 30s18-16.5 18-30C36 8.06 27.94 0 18 0z" fill="#DA2B79" stroke="#141414" stroke-width="1.5"/>
-      <circle cx="18" cy="18" r="6" fill="#FBF7EF"/>
-    </svg>
-  </div>`,
+  html: `<svg width="32" height="44" viewBox="0 0 36 48" xmlns="http://www.w3.org/2000/svg" style="display:block">
+    <path d="M18 0C8.06 0 0 8.06 0 18c0 13.5 18 30 18 30s18-16.5 18-30C36 8.06 27.94 0 18 0z" fill="#DA2B79" stroke="#141414" stroke-width="1.5"/>
+    <circle cx="18" cy="18" r="6" fill="#FBF7EF"/>
+  </svg>`,
   iconSize: [32, 44],
   iconAnchor: [16, 44],
 })
